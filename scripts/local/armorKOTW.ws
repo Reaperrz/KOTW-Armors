@@ -26,11 +26,14 @@ enum EMeteoriteSignType
 	EMST_None
 }
 
+
 // Returns the kotwArmorSetHandler object to use the abilities from and check the values in.
+// Object needs to be created on game start in r4game.ws file.
 function kotwArmors() : kotwArmorSetHandler
 {
 	return theGame.kotwArmorHandler;
 }
+
 
 class kotwArmorSetHandler
 {
@@ -261,7 +264,7 @@ class kotwArmorSetHandler
 		switch(type)
 		{
 			case EAIT_Shock :
-			
+				
 			break;
 			
 			case EAIT_Fire :
@@ -270,7 +273,7 @@ class kotwArmorSetHandler
 			break;
 			
 			case EAIT_Ice :
-			
+				
 			break;
 		}
     }
@@ -309,7 +312,7 @@ class kotwArmorSetHandler
     {
 		var infusionType : EArmorInfusionType;
 		
-		if( action.attacker && GetArmorSetCount(EKAT_Dimeritium) == 5 && (CPlayer)action.victim && action.DealsAnyDamage() && IsDamageTypeCompatible(action) )
+		if( action.attacker && GetArmorSetCount(EKAT_Dimeritium) == 5 && (W3PlayerWitcher)action.victim && action.DealsAnyDamage() && IsDamageTypeCompatible(action) )
 		{
 			infusionDamage = action.processedDmg.vitalityDamage / 10;
 			infusionType = DamageTypeToInfusion(compatibleDamage);
@@ -326,7 +329,7 @@ class kotwArmorSetHandler
 		var infusionType : EArmorInfusionType;
 		
 		infusionType = GetInfusionType();
-		if( (CPlayer)action.attacker && infusionType != EAIT_None && GetArmorSetCount(EKAT_Dimeritium) == 5 )
+		if( (W3PlayerWitcher)action.attacker && infusionType != EAIT_None && GetArmorSetCount(EKAT_Dimeritium) == 5 )
 		{
 			infusionDamage = new W3DamageAction in theGame;
 			infusionDamage.Initialize( action.attacker, action.victim, action.causer, action.GetBuffSourceName(), EHRT_None, CPS_Undefined, action.IsActionMelee(), action.IsActionRanged(), action.IsActionWitcherSign(), action.IsActionEnvironment() );
@@ -336,27 +339,29 @@ class kotwArmorSetHandler
 			infusionDamage.AddDamage( InfusionTypeToDamage(infusionType), GetInfusionDamage() );
 			
 			PlayInfusionHitEffect(infusionType, action.victim);
+			PlayInfusionSound(infusionType, (CActor)witcher);
 			theGame.damageMgr.ProcessAction(infusionDamage);
+			RemoveInfusionEffects();
 			delete infusionDamage;
 		}
     }
     
     // Plays the associated sound effects based on infusion type
-    public function PlayInfusionSound( type : EArmorInfusionType )
+    public function PlayInfusionSound( type : EArmorInfusionType, actor : CActor )
     {
 		if( GetArmorSetCount(EKAT_Dimeritium) == 5 )
 			switch(type)
 			{
 				case EAIT_Shock :
-					theSound.SoundEvent('sign_yrden_shock_activate');
+					actor.SoundEvent('sign_yrden_shock_activate');
 				break;
 				
 				case EAIT_Fire :
-					theSound.SoundEvent('sign_igni_charge_begin');
+					actor.SoundEvent('sign_igni_charge_begin');
 				break;
 				
 				case EAIT_Ice :
-					theSound.SoundEvent('sign_axii_charge_begin');
+					actor.SoundEvent('sign_axii_charge_begin');
 				break;
 			}
     }
