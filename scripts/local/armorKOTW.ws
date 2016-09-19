@@ -26,14 +26,12 @@ enum EMeteoriteSignType
 	EMST_None
 }
 
-/*
 // Returns the kotwArmorSetHandler object to use the abilities from and check the values in.
 // Object needs to be created on game start in r4game.ws file.
 function kotwArmors() : kotwArmorSetHandler
 {
 	return theGame.kotwArmorHandler;
 }
-*/
 
 class kotwArmorSetHandler
 {
