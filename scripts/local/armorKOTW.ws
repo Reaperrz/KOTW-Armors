@@ -503,62 +503,65 @@ class kotwArmorSetHandler
 		inv = witcher.GetInventory();
 		meteoriteArmors = inv.GetItemsByTag('MeteoriteSetTag');
 		
-		switch(upgradeType)
+		if( GetArmorSetCount(EKAT_MeteoriteSilver) == 5 )
 		{
-			case 'Yrden':
-				if( !FactsDoesExist('MeteoriteYrdenUpgrade') )
-				{
-					meteoriteUpgradeLevel += 1;
-					FactsAdd('MeteoriteYrdenUpgrade');
-					for(i=0; i<meteoriteArmors.Size(); i+=1)
-						if( inv.ItemHasAbility(meteoriteArmors[i],'') )
-							inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteYrdenUpgrade', false);
-				}
-			break;
-			
-			case 'Quen':
-				if( !FactsDoesExist('MeteoriteQuenUpgrade') )
-				{
-					meteoriteUpgradeLevel += 1;
-					FactsAdd('MeteoriteQuenUpgrade');
-					for(i=0; i<meteoriteArmors.Size(); i+=1)
-						if( inv.ItemHasAbility(meteoriteArmors[i],'') )
-							inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteQuenUpgrade', false);
-				}
-			break;
-			
-			case 'Igni':
-				if( !FactsDoesExist('MeteoriteIgniUpgrade') )
-				{
-					meteoriteUpgradeLevel += 1;
-					FactsAdd('MeteoriteIgniUpgrade');
-					for(i=0; i<meteoriteArmors.Size(); i+=1)
-						if( inv.ItemHasAbility(meteoriteArmors[i],'') )
-							inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteIgniUpgrade', false);
-				}
-			break;
-			
-			case 'Axii':
-				if( !FactsDoesExist('MeteoriteAxiiUpgrade') )
-				{
-					meteoriteUpgradeLevel += 1;
-					FactsAdd('MeteoriteAxiiUpgrade');
-					for(i=0; i<meteoriteArmors.Size(); i+=1)
-						if( inv.ItemHasAbility(meteoriteArmors[i],'') )
-							inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteAxiiUpgrade', false);
-				}
-			break;
-			
-			case 'Aard':
-				if( !FactsDoesExist('MeteoriteAardUpgrade') )
-				{
-					meteoriteUpgradeLevel += 1;
-					FactsAdd('MeteoriteAardUpgrade');
-					for(i=0; i<meteoriteArmors.Size(); i+=1)
-						if( inv.ItemHasAbility(meteoriteArmors[i],'') )
-							inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteAardUpgrade', false);
-				}
-			break;
+			switch(upgradeType)
+			{
+				case 'Yrden':
+					if( !FactsDoesExist('MeteoriteYrdenUpgrade') )
+					{
+						meteoriteUpgradeLevel += 1;
+						FactsAdd('MeteoriteYrdenUpgrade');
+						for(i=0; i<meteoriteArmors.Size(); i+=1)
+							if( inv.ItemHasTag(meteoriteArmors[i],'MeteoriteArmorPartWhatever1') )
+								inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteYrdenUpgrade', false);
+					}
+				break;
+				
+				case 'Quen':
+					if( !FactsDoesExist('MeteoriteQuenUpgrade') )
+					{
+						meteoriteUpgradeLevel += 1;
+						FactsAdd('MeteoriteQuenUpgrade');
+						for(i=0; i<meteoriteArmors.Size(); i+=1)
+							if( inv.ItemHasTag(meteoriteArmors[i],'MeteoriteArmorPartWhatever2') )
+								inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteQuenUpgrade', false);
+					}
+				break;
+				
+				case 'Igni':
+					if( !FactsDoesExist('MeteoriteIgniUpgrade') )
+					{
+						meteoriteUpgradeLevel += 1;
+						FactsAdd('MeteoriteIgniUpgrade');
+						for(i=0; i<meteoriteArmors.Size(); i+=1)
+							if( inv.ItemHasTag(meteoriteArmors[i],'MeteoriteArmorPartWhatever3') )
+								inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteIgniUpgrade', false);
+					}
+				break;
+				
+				case 'Axii':
+					if( !FactsDoesExist('MeteoriteAxiiUpgrade') )
+					{
+						meteoriteUpgradeLevel += 1;
+						FactsAdd('MeteoriteAxiiUpgrade');
+						for(i=0; i<meteoriteArmors.Size(); i+=1)
+							if( inv.ItemHasTag(meteoriteArmors[i],'MeteoriteArmorPartWhatever4') )
+								inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteAxiiUpgrade', false);
+					}
+				break;
+				
+				case 'Aard':
+					if( !FactsDoesExist('MeteoriteAardUpgrade') )
+					{
+						meteoriteUpgradeLevel += 1;
+						FactsAdd('MeteoriteAardUpgrade');
+						for(i=0; i<meteoriteArmors.Size(); i+=1)
+							if( inv.ItemHasTag(meteoriteArmors[i],'MeteoriteArmorPartWhatever5') )
+								inv.AddItemCraftedAbility(meteoriteArmors[i], 'MeteoriteAardUpgrade', false);
+					}
+				break;
+			}
 		}
 	}
 	
